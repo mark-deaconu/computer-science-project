@@ -1,0 +1,469 @@
+angle = 0
+body_x = 25
+body_y = 355
+fuel=100
+moveup = False
+left = False
+right = False
+fuel_exists = False
+score=0
+high_score=0
+last_score=0
+        #Planets
+planet_x = random(660, 1300)
+planet_y = random(150, 600) 
+planet_d = 200
+planet_colour = random(100, 255)
+
+planet_x2 = 1300
+planet_y2 = random(150, 600)
+planet_d2 = 150 
+planet_colour2 = random(100, 255)
+    
+planet_x3 = random(660, 1300)
+planet_y3 = random(150, 600)
+planet_d3 = 175
+planet_colour3 = random(100, 255)
+
+planet_x4 = random(660, 1300)
+planet_y4 = random(150, 600)
+planet_d4 = 125
+planet_colour4 = random(100, 255)
+
+planet_x5 = random(660, 1300)
+planet_y5 = random(150, 600)
+planet_d5 = 225
+planet_colour5 = random(100, 255)
+
+planet_x6 = random(660, 1300)
+planet_y6 = random(150, 600)
+
+planet_x7 = random(660, 1300)
+planet_y7 = random(150, 600)
+planet_d7 = 180
+planet_colour7 = random(100, 255)
+
+planet_x8 = random(660, 1300)
+planet_y8 = random(150, 600)
+planet_d8 = 135
+planet_colour8 = random(150, 255)
+
+def setup():
+    size(1360,710)
+    background(100)
+
+    frameRate(30)            
+        
+def draw(): 
+    background(0)
+    global last_score
+    global score
+    global angle
+    global body_x
+    global body_y
+    global moveup
+    global left
+    global high_score
+    global right
+    global planet_x
+    global planet_y
+    global planet_d
+    global planet_colour
+    global planet_x2
+    global planet_y2
+    global planet_d2
+    global planet_colour2
+    global planet_x3
+    global planet_y3
+    global planet_d3
+    global planet_colour3
+    global planet_x4
+    global planet_y4
+    global planet_d4
+    global planet_colour4
+    global planet_x5
+    global planet_y5
+    global planet_d5
+    global planet_colour5
+    global planet_x6
+    global planet_y6
+    global planet_x7
+    global planet_y7
+    global planet_d7
+    global planet_colour7
+    global planet_x8
+    global planet_y8
+    global planet_d8
+    global planet_colour8
+    global fuel
+    global fuel_exists
+
+    #Sun
+    fill(255,255,0)
+    ellipse(0, 355, 580, 580)
+    if fuel_exists==True:
+        score += 1
+    textSize(50)
+    text("SCORE:",0,50)
+    text(score,250,50)
+    
+    if planet_x <= 1800:
+        planet_x -= 10
+    if planet_x <= 0:
+        planet_x = random(1300, 1800)
+        planet_y = random(150, 600)
+        planet_d = random(150, 250)
+        planet_colour = random(100, 255)
+    
+    if planet_x2 <= 1300:
+        planet_x2 -= 15
+    if planet_x2 <= 0:
+        planet_x2 = 1300
+        planet_y2 = random(150, 600)
+        planet_d2 = random(100, 200)
+        planet_colour2 = random(100, 255)
+        
+    if planet_x3 <= 1300:
+        planet_x3 -= 12
+    if planet_x3 <= 0:
+        planet_x3 = 1300
+        planet_y3 = random(150, 600)
+        planet_d3 = random(100, 225)
+        planet_colour3 = random(100, 255)
+    
+    if planet_x4 <= 1300:
+        planet_x4 -= 16
+    if planet_x4 <= 0:
+        planet_x4 = 1300
+        planet_y4 = random(150, 600)
+        planet_d4 = random(120, 225)
+        planet_colour4 = random(100, 255)
+        
+    if planet_x5 <= 1300:
+        planet_x5 -= 11
+    if planet_x5 <= 0:
+        planet_x5 = 1300
+        planet_y5 = random(150, 600)
+        planet_d5 = random(100, 225)
+        planet_colour5 = random(100, 255)
+        
+    if planet_x6 <= 4000:
+        planet_x6 -= 25
+    if planet_x6 <= 0:
+        planet_x6 = random(1300, 4000)
+        planet_y6 = random(150, 600)
+    
+    if planet_x7 <= 1300:
+        planet_x7 -= 18
+    if planet_x7 <= 0:
+        planet_x7 = 1300
+        planet_y7 = random(150, 600)
+        planet_d7 = random(100, 225)
+        planet_colour7 = random(100, 255)
+        
+    if planet_x8 <= 1300:
+        planet_x8 -= 17
+    if planet_x8 <= 0:
+        planet_x8 = 1300
+        planet_y8 = random(150, 600)
+        planet_d8 = random(100, 225)
+        planet_colour8 = random(100, 255)
+    
+    if body_x >= planet_x - 100 and body_x <= planet_x + 100 and body_y >= planet_y - 100 and body_y <= planet_y + 100:
+        fuel_exists = False
+    
+    if body_x >= planet_x2 - 75 and body_x <= planet_x2 + 75 and body_y >= planet_y2 - 75 and body_y <= planet_y2 + 75:
+        fuel += 1
+    
+    if body_x >= planet_x3 - 87.5 and body_x <= planet_x3 + 87.5 and body_y >= planet_y3 - 87.5 and body_y <= planet_y3 + 87.5:
+        fuel += 1
+    
+    if body_x >= planet_x4 - 75 and body_x <= planet_x4 + 75 and body_y >= planet_y4 - 75 and body_y <= planet_y4 + 75:
+        fuel_exists = False
+        
+    if body_x >= planet_x5 - 112.5 and body_x <= planet_x5 + 112.5 and body_y >= planet_y5 - 112.5 and body_y <= planet_y5 + 112.5:
+        fuel += 1
+    
+    if body_x >= planet_x6 - 50 and body_x <= planet_x6 + 50 and body_y >= planet_y6 - 50 and body_y <= planet_y6 + 50:
+        fuel += 3
+        
+    if body_x >= planet_x7 - 90 and body_x <= planet_x7 + 90 and body_y >= planet_y7 - 90 and body_y <= planet_y7 + 90:
+        fuel += 1
+    
+    if body_x >= planet_x8 - 67.5 and body_x <= planet_x8 + 67.5 and body_y >= planet_y8 - 67.5 and body_y <= planet_y8 + 67.5:
+        fuel += 1
+        
+    #Planet 1 (Green)
+    fill(0, planet_colour, 0)
+    ellipse(planet_x, planet_y, planet_d, planet_d)
+    fill(0, 140, 0)
+    ellipse(planet_x - 50, planet_y - 25, planet_d - 125, planet_d - 125)
+    fill(0, 140, 0)
+    ellipse(planet_x + 40, planet_y + 50, planet_d - 145, planet_d - 145)
+    #Space Monster 1
+    fill(150, 0, 150)
+    ellipse(planet_x - 50, planet_y - 25, 65, 65)
+    rect(planet_x - 120, planet_y - 25, 50, 20)    
+    rect(planet_x - 120, planet_y - 50, 50, 20) 
+    ellipse(planet_x - 120, planet_y - 15, 25, 25)
+    ellipse(planet_x - 120, planet_y - 40, 25, 25) 
+    fill(255)
+    ellipse(planet_x - 120, planet_y - 15, 15, 15)
+    ellipse(planet_x - 120, planet_y - 40, 15, 15)
+    fill(0)
+    ellipse(planet_x - 120, planet_y - 15, 5, 5)
+    ellipse(planet_x - 120, planet_y - 40, 5, 5)
+    ellipse(planet_x - 45, planet_y - 25, 40, 50)
+    fill(200, 0, 0)
+    ellipse(planet_x - 35, planet_y - 25, 20, 40)
+    
+    #Planet 2 (Yellow)
+    fill(planet_colour2, planet_colour2, 0)
+    ellipse(planet_x2, planet_y2, planet_d2, planet_d2)
+    fill(140, 140, 0)
+    ellipse(planet_x2 - 25, planet_y2 - 20, planet_d2 - 75, planet_d2 - 75)
+    ellipse(planet_x2 + 20, planet_y2 + 35, planet_d2 - 105, planet_d2 - 105)
+    
+    #Planet 3 (Pink/ Purple)
+    fill(planet_colour3, 0, planet_colour3)
+    ellipse(planet_x3, planet_y3, planet_d3, planet_d3)
+    fill(150, 0, 150)
+    ellipse(planet_x3 - 25, planet_y3 + 30, planet_d3 - 100, planet_d3 - 100)
+    
+    #Planet 4 (Blue)
+    fill(0, 0, planet_colour4)
+    ellipse(planet_x4, planet_y4, planet_d4, planet_d4)
+    #Space Monster 2
+    fill(255,127,80)
+    triangle(planet_x4, planet_y4 - 80, planet_x4 - 30, planet_y4 - 15, planet_x4 + 30, planet_y4 - 15)
+    triangle(planet_x4 - 90, planet_y4 + 5, planet_x4 - 30, planet_y4 - 25, planet_x4 - 30, planet_y4 + 35)
+    triangle(planet_x4, planet_y4 + 90, planet_x4 + 28, planet_y4 + 30, planet_x4 - 30, planet_y4 + 30)
+    triangle(planet_x4 + 90, planet_y4 + 5, planet_x4 + 30, planet_y4 - 25, planet_x4 + 30, planet_y4 + 35)
+    ellipse(planet_x4, planet_y4 + 5, 90, 90)
+    ellipse(planet_x4, planet_y4 + 5, 40, 60)
+    fill(255,255,153)
+    ellipse(planet_x4, planet_y4 + 5, 40, 35)
+    fill(100, 0, 0)
+    ellipse(planet_x4, planet_y4 + 5, 25, 25)
+    fill(0)
+    ellipse(planet_x4, planet_y4 + 5, 15, 15)
+    
+    #Planet 5 (Red)
+    fill(planet_colour5, 0, 0)
+    ellipse(planet_x5, planet_y5, planet_d5, planet_d5)
+
+    #Planet 6 (Gold)
+    fill(255, 215, 0)
+    ellipse(planet_x6, planet_y6, 100, 100)
+
+    #Planet 7 (Cyan)
+    fill(0, planet_colour7, planet_colour7)
+    ellipse(planet_x7, planet_y7, planet_d7, planet_d7)
+    
+    #Planet 8 (White/ Grey)
+    fill(planet_colour8, planet_colour8, planet_colour8)
+    ellipse(planet_x8, planet_y8, planet_d8, planet_d8)
+    
+    
+    if score > high_score:
+        high_score = score
+    
+    #Fuel Bar
+    fuel+=-0.5
+    fill(211,211,211)
+    rect(0, 660, 410, 50)
+    fill(0)
+    rect(10, 670, 390, 30)
+    fill(211,211,211)
+    rect(40, 670, 10, 30) 
+    rect(80, 670, 10, 30)     
+    rect(120, 670, 10, 30) 
+    rect(160, 670, 10, 30)
+    rect(200, 670, 10, 30) 
+    rect(240, 670, 10, 30)     
+    rect(280, 670, 10, 30) 
+    rect(320, 670, 10, 30)
+    rect(360, 670, 10, 30)
+    
+    fill(0, 200, 200)
+    if fuel>10:
+        rect(10, 670, 30, 30)
+    if fuel>20:
+        rect(50, 670, 30, 30)
+    if fuel>30:
+        rect(90, 670, 30, 30)
+    if fuel>40:
+        rect(130, 670, 30, 30)
+    if fuel>50:
+        rect(170, 670, 30, 30)
+    if fuel>60:
+        rect(210, 670, 30, 30)
+    if fuel>70:
+        rect(250, 670, 30, 30)
+    if fuel>80:
+        rect(290, 670, 30, 30)
+    if fuel>90:
+        rect(330, 670, 30, 30)
+    if fuel>97:
+        rect(370, 670, 30, 30)
+    if fuel<0:
+        fuel_exists=False
+
+    if (right):
+        angle += 0.17
+    if (left):
+        angle += -0.17
+    if (moveup):
+        body_x += cos(angle) * 7
+
+        body_y += sin(angle) * 7
+
+    #if ((keyPressed) and (key == 's')):
+    #    y+=1
+    pushMatrix()
+    if fuel_exists==True:
+        translate(body_x, body_y)
+        
+    rotate(angle)
+        
+    #Rocket Body
+    fill(185)
+    ellipse(0, 0, 62.5, 25)
+        
+    #Rocket Winglets
+    fill(195, 0, 0)
+    #triangle(body_x - 70, body_y - 40, body_x - 70, body_y - 20, body_x - 30, body_y - 20)
+    triangle(-35, -20,-35, -10, -15, -10)
+    triangle(-35, 20, -35, 10, -15, 10)
+        
+    #Rocket Porthole
+    fill(50)
+    ellipse(10, 0, 22.5, 22.5)
+    fill(0, 0, 255)
+    ellipse(10, 0, 15, 15)
+        
+    popMatrix()
+    
+    if fuel > 100:
+        fuel = 100
+    last_score=score
+    if fuel_exists==False:
+        #body_x=0
+        #body_y=0
+        fill(0, 255, 0)
+        rect(550, 155, 245, 125)
+        textSize(100) 
+        fill(255)
+        text(high_score, 1000,100)
+        text("HIGH SCORE:",300,100)
+        text("PLAY", 550, 255)
+        textSize(50)
+        text("HOW TO PLAY:", 490, 355)
+        textSize(20)
+        text("The controls are W to move faster,", 490, 385)
+        text("A to move left and D to move right.", 495, 405)
+        text("There is a score which is always", 505, 425)
+        text("increasing. There are 2 types of planets,", 475, 445)
+        text("regular which provides fuel when the player", 455, 465)
+        text("hovers over it, and also monster planets.", 470, 485)
+        text("These planets have aliens on them which eat the player", 405, 505)
+        text("when the rocket flies over them. Fuel is displayed at", 420, 525)
+        text("the bottom left corner. Fuel decreases at a constant", 420, 545)
+        text("rate and the only way to increase it is by flying over", 420, 565)
+        text("regular planets to obtain the gas in their atmosphere.", 410, 585)
+        '''textSize(100)
+        text(score - 1, 1000, 680)
+        text("LAST SCORE:", 300, 680)'''
+        fill(0,200,0)
+        rect(50,350,200,200)
+        if high_score>2:
+            fill(255)
+            text("YOU DIED", 100,400)
+            text("SCORE:", 100,500)
+            text(last_score, 200,500)
+        body_x=25
+        body_y=355
+        angle=0
+        planet_x = random(660, 1300)
+        planet_y = random(150, 600) 
+        planet_d = 200
+        planet_colour = random(100, 255)
+            
+        planet_x2 = 1300
+        planet_y2 = random(150, 600)
+        planet_d2 = 150 
+        planet_colour2 = random(100, 255)
+                
+        planet_x3 = random(660, 1300)
+        planet_y3 = random(150, 600)
+        planet_d3 = 175
+        planet_colour3 = random(100, 255)
+            
+        planet_x4 = random(660, 1300)
+        planet_y4 = random(150, 600)
+        planet_d4 = 125
+        planet_colour4 = random(100, 255)
+            
+        planet_x5 = random(660, 1300)
+        planet_y5 = random(150, 600)
+        planet_d5 = 225
+        planet_colour5 = random(100, 255)
+            
+        planet_x6 = random(660, 1300)
+        planet_y6 = random(150, 600)
+            
+        planet_x7 = random(660, 1300)
+        planet_y7 = random(150, 600)
+        planet_d7 = 180
+        planet_colour7 = random(100, 255)
+            
+        planet_x8 = random(660, 1300)
+        planet_y8 = random(150, 600)
+        planet_d8 = 135
+        planet_colour8 = random(150, 255)
+
+        if (mousePressed == True):
+            score=0
+            fuel_exists = True
+            fuel=100
+    if body_x<25:
+        body_x+=10
+    if body_x>1360:
+        body_x+=-10
+    if body_y<0:
+        body_y+=10
+    if body_y>700:
+        body_y+=-10
+def keyPressed():
+    global moveup
+    global left
+    global right
+    global body_x
+    global body_y
+    global angle
+    global fire_gif
+    if ((key == 'W') or (key == 'w')):
+        moveup= True
+        body_x += 2* cos(angle)
+        body_y += 2* sin(angle)
+        
+    if ((key == 'A') or (key == 'a')):
+        left= True
+    if ((key == 'D') or (key == 'd')):
+        right = True
+        
+def keyReleased():
+    global right
+    global moveup
+    global left
+    
+    if ((key != 'W') and (key != 'w')):
+        moveup = False
+        left = False
+        right = False
+    if ((key != 'A') and (key != 'a')):
+        left= False
+        moveup= True
+    if ((key != 'D') and (key != 'd')):
+        right= False
+        moveup = True
